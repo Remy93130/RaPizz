@@ -10,6 +10,7 @@ public class Application {
         try {
             Connection con = Database.getConnection();
             con.close();
+            System.out.println("Connection open & closed successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
