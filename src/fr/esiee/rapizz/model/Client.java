@@ -17,6 +17,10 @@ public class Client {
         this.adresse = Objects.requireNonNull(adresse);
     }
 
+    public Client(String name, int sold, int fidelity, Adresse adresse) {
+        this(-1, name, sold, fidelity, adresse);
+    }
+
     public int getId() {
         return id;
     }

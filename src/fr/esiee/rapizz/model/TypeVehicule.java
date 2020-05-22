@@ -11,6 +11,10 @@ public class TypeVehicule {
         this.name = Objects.requireNonNull(name);
     }
 
+    public TypeVehicule(String name) {
+        this(-1, name);
+    }
+
     public int getId() {
         return id;
     }

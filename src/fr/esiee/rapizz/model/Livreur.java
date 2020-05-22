@@ -11,6 +11,10 @@ public class Livreur {
         this.name = Objects.requireNonNull(name);
     }
 
+    public Livreur(String name) {
+        this(-1, name);
+    }
+
     public int getId() {
         return id;
     }

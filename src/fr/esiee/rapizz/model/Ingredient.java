@@ -6,12 +6,16 @@ import java.util.Objects;
 public class Ingredient {
     private int id;
     private String name;
-    private ArrayList<Pizza> pizzas;
+    private final ArrayList<Pizza> pizzas;
 
     public Ingredient(int id, String name) {
         this.id = id;
         this.name = Objects.requireNonNull(name);
         this.pizzas = new ArrayList<>();
+    }
+
+    public Ingredient(String name) {
+        this(-1, name);
     }
 
     public int getId() {

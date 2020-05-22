@@ -24,6 +24,10 @@ public class Commande {
         this.vehicule = Objects.requireNonNull(vehicule);
     }
 
+    public Commande(Date dateCommand, Date dateDelivery, Client client, Pizza pizza, Taille taille, Livreur livreur, Vehicule vehicule) {
+        this(-1, dateCommand, dateDelivery, client, pizza, taille, livreur, vehicule);
+    }
+
     public int getId() {
         return id;
     }

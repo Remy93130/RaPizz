@@ -10,12 +10,17 @@ public class Adresse {
     private String zipCode;
 
 
+
     public Adresse(int id, String city, String road, int number, String zipCode) {
         this.id = id;
         this.city = Objects.requireNonNull(city);
         this.road = Objects.requireNonNull(road);
         this.number = number;
         this.zipCode = Objects.requireNonNull(zipCode);
+    }
+
+    public Adresse(String city, String road, int number, String zipCode) {
+        this(-1, city, road, number, zipCode);
     }
 
     public int getId() {

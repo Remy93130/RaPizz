@@ -7,7 +7,7 @@ public class Pizza {
     private int id;
     private String name;
     private float price;
-    private ArrayList<Ingredient> ingredients;
+    private final ArrayList<Ingredient> ingredients;
 
 
     public Pizza(int id, String name, float price) {
@@ -15,6 +15,10 @@ public class Pizza {
         this.name = Objects.requireNonNull(name);
         this.price = price;
         this.ingredients = new ArrayList<>();
+    }
+
+    public Pizza(String name, float price) {
+        this(-1, name, price);
     }
 
     public int getId() {

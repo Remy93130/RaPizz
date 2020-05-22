@@ -11,6 +11,10 @@ public class Taille {
         this.ratio = ratio;
     }
 
+    public Taille(float ratio) {
+        this(-1, ratio);
+    }
+
     public int getId() {
         return id;
     }
