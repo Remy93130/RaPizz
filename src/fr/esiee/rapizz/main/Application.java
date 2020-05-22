@@ -3,9 +3,11 @@ package fr.esiee.rapizz.main;
 import fr.esiee.rapizz.dao.DaoAdresse;
 import fr.esiee.rapizz.dao.DaoClient;
 import fr.esiee.rapizz.dao.DaoLivreur;
+import fr.esiee.rapizz.dao.DaoTypeVehicule;
 import fr.esiee.rapizz.model.Adresse;
 import fr.esiee.rapizz.model.Client;
 import fr.esiee.rapizz.model.Livreur;
+import fr.esiee.rapizz.model.TypeVehicule;
 
 import java.sql.SQLException;
 
@@ -14,7 +16,8 @@ public class Application {
         try {
             // Application.adresse();
             // Application.client();
-            Application.livreur();
+            // Application.livreur();
+            Application.typeVehicule();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,5 +81,20 @@ public class Application {
         daoLivreur.delete(res);
         System.out.println("After delete");
         daoLivreur.get().forEach(System.out::println);
+    }
+
+    private static void typeVehicule() throws SQLException {
+        DaoTypeVehicule daoTypeVehicule = new DaoTypeVehicule();
+        System.out.println("TypeVehicule:");
+        daoTypeVehicule.get().forEach(System.out::println);
+        int res = daoTypeVehicule.add(new TypeVehicule("Scooter des mers"));
+        TypeVehicule typeVehicule = daoTypeVehicule.get(res);
+        System.out.println("After add:\n" + typeVehicule);
+        typeVehicule.setName("Drone");
+        daoTypeVehicule.update(typeVehicule);
+        System.out.println("After update:\n" + daoTypeVehicule.get(res));
+        daoTypeVehicule.delete(res);
+        System.out.println("After delete");
+        daoTypeVehicule.get().forEach(System.out::println);
     }
 }
