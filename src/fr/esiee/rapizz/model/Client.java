@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Client {
     private int id;
     private String name;
-    private int sold;
+    private float sold;
     private int fidelity;
     private Adresse adresse;
 
-    public Client(int id, String name, int sold, int fidelity, Adresse adresse) {
+    public Client(int id, String name, float sold, int fidelity, Adresse adresse) {
         this.id = id;
         this.name = Objects.requireNonNull(name);
         this.sold = sold;
@@ -17,11 +17,11 @@ public class Client {
         this.adresse = Objects.requireNonNull(adresse);
     }
 
-    public Client(String name, int sold, int fidelity, Adresse adresse) {
+    public Client(String name, float sold, int fidelity, Adresse adresse) {
         this(-1, name, sold, fidelity, adresse);
     }
 
-    public int getId() {
+    public float getId() {
         return id;
     }
 
@@ -39,11 +39,11 @@ public class Client {
         return this;
     }
 
-    public int getSold() {
+    public float getSold() {
         return sold;
     }
 
-    public Client setSold(int sold) {
+    public Client setSold(float sold) {
         this.sold = sold;
         return this;
     }
