@@ -2,8 +2,10 @@ package fr.esiee.rapizz.main;
 
 import fr.esiee.rapizz.dao.DaoAdresse;
 import fr.esiee.rapizz.dao.DaoClient;
+import fr.esiee.rapizz.dao.DaoLivreur;
 import fr.esiee.rapizz.model.Adresse;
 import fr.esiee.rapizz.model.Client;
+import fr.esiee.rapizz.model.Livreur;
 
 import java.sql.SQLException;
 
@@ -11,7 +13,8 @@ public class Application {
     public static void main(String[] args) {
         try {
             // Application.adresse();
-            Application.client();
+            // Application.client();
+            Application.livreur();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,5 +63,20 @@ public class Application {
         daoClient.delete(res);
         System.out.println("After delete");
         daoClient.get().forEach(System.out::println);
+    }
+
+    private static void livreur() throws SQLException {
+        DaoLivreur daoLivreur = new DaoLivreur();
+        System.out.println("Livreur:");
+        daoLivreur.get().forEach(System.out::println);
+        int res = daoLivreur.add(new Livreur("John"));
+        Livreur livreur = daoLivreur.get(res);
+        System.out.println("After add:\n" + livreur);
+        livreur.setName("Paul");
+        daoLivreur.update(livreur);
+        System.out.println("After update:\n" + daoLivreur.get(res));
+        daoLivreur.delete(res);
+        System.out.println("After delete");
+        daoLivreur.get().forEach(System.out::println);
     }
 }
