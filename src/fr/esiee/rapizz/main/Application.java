@@ -12,7 +12,9 @@ public class Application {
             // Application.client();
             // Application.livreur();
             // Application.typeVehicule();
-            Application.taille();
+            // Application.taille();
+            // Application.vehicule();
+            Application.ingredient();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,5 +108,39 @@ public class Application {
         daoTaille.delete(res);
         System.out.println("After delete");
         daoTaille.get().forEach(System.out::println);
+    }
+
+    private static void vehicule() throws SQLException {
+        DaoVehicule daoVehicule = new DaoVehicule();
+        DaoTypeVehicule daoTypeVehicule = new DaoTypeVehicule();
+        System.out.println("Vehicule:");
+        daoVehicule.get().forEach(System.out::println);
+        int res = daoVehicule.add(new Vehicule(
+                "AB-000-CD",
+                daoTypeVehicule.get(1)
+        ));
+        Vehicule vehicule = daoVehicule.get(res);
+        System.out.println("After add:\n" + vehicule);
+        vehicule.setImmatriculation("AB-001-CD");
+        daoVehicule.update(vehicule);
+        System.out.println("After update:\n" + daoVehicule.get(res));
+        daoVehicule.delete(res);
+        System.out.println("After delete");
+        daoVehicule.get().forEach(System.out::println);
+    }
+
+    private static void ingredient() throws SQLException {
+        DaoIngredient daoIngredient = new DaoIngredient();
+        System.out.println("Ingredient:");
+        daoIngredient.get().forEach(System.out::println);
+        int res = daoIngredient.add(new Ingredient("Ingredient"));
+        Ingredient ingredient = daoIngredient.get(res);
+        System.out.println("After add:\n" + ingredient);
+        ingredient.setName("Ingredient updated");
+        daoIngredient.update(ingredient);
+        System.out.println("After update:\n" + daoIngredient.get(res));
+        daoIngredient.delete(res);
+        System.out.println("After delete");
+        daoIngredient.get().forEach(System.out::println);
     }
 }

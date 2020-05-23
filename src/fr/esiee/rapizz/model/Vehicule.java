@@ -4,15 +4,17 @@ import java.util.Objects;
 
 public class Vehicule {
     private int id;
+    private String immatriculation;
     private TypeVehicule typeVehicule;
 
-    public Vehicule(int id, TypeVehicule typeVehicule) {
+    public Vehicule(int id, String immatriculation, TypeVehicule typeVehicule) {
         this.id = id;
+        this.immatriculation = Objects.requireNonNull(immatriculation);
         this.typeVehicule = Objects.requireNonNull(typeVehicule);
     }
 
-    public Vehicule(TypeVehicule typeVehicule) {
-        this(-1, typeVehicule);
+    public Vehicule(String immatriculation, TypeVehicule typeVehicule) {
+        this(-1, immatriculation, typeVehicule);
     }
 
     public int getId() {
@@ -21,6 +23,15 @@ public class Vehicule {
 
     public Vehicule setId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public String getImmatriculation() {
+        return immatriculation;
+    }
+
+    public Vehicule setImmatriculation(String immatriculation) {
+        this.immatriculation = immatriculation;
         return this;
     }
 
@@ -38,18 +49,20 @@ public class Vehicule {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehicule vehicule = (Vehicule) o;
-        return typeVehicule.equals(vehicule.typeVehicule);
+        return getImmatriculation().equals(vehicule.getImmatriculation()) &&
+                getTypeVehicule().equals(vehicule.getTypeVehicule());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typeVehicule);
+        return Objects.hash(getImmatriculation(), getTypeVehicule());
     }
 
     @Override
     public String toString() {
         return "Vehicule{" +
                 "id=" + id +
+                ", immatriculation='" + immatriculation + '\'' +
                 ", typeVehicule=" + typeVehicule +
                 '}';
     }

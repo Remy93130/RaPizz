@@ -108,6 +108,7 @@ public class Database {
     }
 
     public boolean preparedRequestUpdate(String sql, List<String> parameters) throws SQLException {
+        System.out.println("Exec: " + sql);
         PreparedStatement statement = con.prepareStatement(sql);
         for (int i = 0; i < parameters.size(); i++) {
             statement.setString(i+ 1, parameters.get(i));
