@@ -17,7 +17,7 @@ WHERE cmd.idLivreur = l.idLivreur
 
 
 # Vehicules non utilises
-SELECT v.idVehicule
+SELECT v.idVehicule, v.plaqueImmat
 FROM vehicule v
 WHERE v.idVehicule NOT IN (
   SELECT c.idVehicule

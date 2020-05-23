@@ -1,13 +1,7 @@
 package fr.esiee.rapizz.main;
 
-import fr.esiee.rapizz.dao.DaoAdresse;
-import fr.esiee.rapizz.dao.DaoClient;
-import fr.esiee.rapizz.dao.DaoLivreur;
-import fr.esiee.rapizz.dao.DaoTypeVehicule;
-import fr.esiee.rapizz.model.Adresse;
-import fr.esiee.rapizz.model.Client;
-import fr.esiee.rapizz.model.Livreur;
-import fr.esiee.rapizz.model.TypeVehicule;
+import fr.esiee.rapizz.dao.*;
+import fr.esiee.rapizz.model.*;
 
 import java.sql.SQLException;
 
@@ -17,7 +11,8 @@ public class Application {
             // Application.adresse();
             // Application.client();
             // Application.livreur();
-            Application.typeVehicule();
+            // Application.typeVehicule();
+            Application.taille();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,5 +91,20 @@ public class Application {
         daoTypeVehicule.delete(res);
         System.out.println("After delete");
         daoTypeVehicule.get().forEach(System.out::println);
+    }
+
+    private static void taille() throws SQLException {
+        DaoTaille daoTaille = new DaoTaille();
+        System.out.println("Taille:");
+        daoTaille.get().forEach(System.out::println);
+        int res = daoTaille.add(new Taille("Senior", 2.0f));
+        Taille taille = daoTaille.get(res);
+        System.out.println("After add:\n" + taille);
+        taille.setName("Incroyable");
+        daoTaille.update(taille);
+        System.out.println("After update:\n" + daoTaille.get(res));
+        daoTaille.delete(res);
+        System.out.println("After delete");
+        daoTaille.get().forEach(System.out::println);
     }
 }

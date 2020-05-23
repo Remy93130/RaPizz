@@ -37,16 +37,19 @@ CREATE TABLE Adresse(
 ) ENGINE=InnoDB;
 
 CREATE TABLE Taille(
-   idTaille VARCHAR(50),
+   idTaille INT AUTO_INCREMENT,
+   nomTaille VARCHAR(50) NOT NULL,
    ratioPrix DECIMAL(3,2) NOT NULL,
    PRIMARY KEY(idTaille)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Vehicule(
-   idVehicule CHAR(9),
+   idVehicule INT AUTO_INCREMENT,
+   plaqueImmat CHAR(9) NOT NULL,
    idTypeVehicule INT NOT NULL,
    PRIMARY KEY(idVehicule),
-   FOREIGN KEY(idTypeVehicule) REFERENCES TypeVehicule(idTypeVehicule)
+   FOREIGN KEY(idTypeVehicule) REFERENCES TypeVehicule(idTypeVehicule),
+   CONSTRAINT UC_Vehicule UNIQUE (plaqueImmat)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Client(
@@ -65,9 +68,9 @@ CREATE TABLE Commande(
    dateLivraison DATETIME,
    idClient INT NOT NULL,
    idPizza INT NOT NULL,
-   idTaille VARCHAR(50) NOT NULL,
+   idTaille INT NOT NULL,
    idLivreur INT NOT NULL,
-   idVehicule CHAR(9) NOT NULL,
+   idVehicule INT NOT NULL,
    PRIMARY KEY(idCommande),
    FOREIGN KEY(idClient) REFERENCES Client(idClient),
    FOREIGN KEY(idPizza) REFERENCES Pizza(idPizza),
