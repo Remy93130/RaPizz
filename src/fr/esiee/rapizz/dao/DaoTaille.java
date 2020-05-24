@@ -2,12 +2,9 @@ package fr.esiee.rapizz.dao;
 
 import fr.esiee.rapizz.dao.interfaces.DaoTailleInterface;
 import fr.esiee.rapizz.model.Taille;
-import fr.esiee.rapizz.util.Database;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 

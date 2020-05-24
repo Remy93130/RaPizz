@@ -52,7 +52,7 @@ public class DaoIngredient extends AbstactDao implements DaoIngredientInterface 
 
     @Override
     public List<Ingredient> get() throws SQLException {
-        ArrayList<Ingredient> ingredients =  new ArrayList<>();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
         ResultSet resultSet = this.db.request("SELECT * FROM Ingredient");
         while (resultSet.next()) {
             ingredients.add(new Ingredient(
@@ -60,7 +60,7 @@ public class DaoIngredient extends AbstactDao implements DaoIngredientInterface 
                     resultSet.getString(2)
             ));
         }
-        for (Ingredient ingredient: ingredients) {
+        for (Ingredient ingredient : ingredients) {
             ArrayList<String> params = new ArrayList<>();
             params.add(String.valueOf(ingredient.getId()));
             String sqlPizza = "SELECT * FROM Pizza NATURAL JOIN Contient WHERE idIngredient=?";

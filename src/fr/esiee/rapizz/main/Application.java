@@ -4,22 +4,20 @@ import fr.esiee.rapizz.dao.*;
 import fr.esiee.rapizz.model.*;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            // Application.adresse();
-            // Application.client();
-            // Application.livreur();
-            // Application.typeVehicule();
-            // Application.taille();
-            // Application.vehicule();
-            // Application.ingredient();
-            // Application.pizza();
-            // Application.commande();
+            Application.adresse();
+            Application.client();
+            Application.livreur();
+            Application.typeVehicule();
+            Application.taille();
+            Application.vehicule();
+            Application.ingredient();
+            Application.pizza();
+            Application.commande();
             Application.special();
         } catch (Exception e) {
             e.printStackTrace();

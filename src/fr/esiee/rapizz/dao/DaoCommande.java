@@ -6,7 +6,6 @@ import fr.esiee.rapizz.model.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,7 +94,8 @@ public class DaoCommande extends AbstactDao implements DaoCommandeInterface {
         try {
             formattedDate = df.format(date);
 
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+        }
         return formattedDate;
     }
 
@@ -104,7 +104,8 @@ public class DaoCommande extends AbstactDao implements DaoCommandeInterface {
         Date formattedDate = null;
         try {
             formattedDate = df.parse(date);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+        }
         return formattedDate;
     }
 

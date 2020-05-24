@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Database {
-    private Connection con = null;
     private static Database instance = null;
+    private Connection con = null;
 
     /**
      * Singleton constructor
@@ -31,7 +31,20 @@ public class Database {
     }
 
     /**
+     * The singleton getter
+     *
+     * @return Database object
+     */
+    public static Database getDatabase() {
+        if (Database.instance == null) {
+            Database.instance = new Database();
+        }
+        return Database.instance;
+    }
+
+    /**
      * Read the json file with the database credentials
+     *
      * @return An hashmap with key and value as string
      */
     private HashMap<String, String> getCredentials() {
@@ -53,30 +66,21 @@ public class Database {
     }
 
     /**
-     * The singleton getter
-     * @return Database object
-     */
-    public static Database getDatabase() {
-        if (Database.instance == null) {
-            Database.instance = new Database();
-        }
-        return Database.instance;
-    }
-
-    /**
      * Request who display tables present in the database
+     *
      * @throws SQLException If there are trouble during the request
      */
     public void requestTest() throws SQLException {
         ResultSet resultSet = con.createStatement().executeQuery("SHOW TABLES");
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             System.out.println(resultSet.getString(1));
         }
     }
 
     /**
      * Create and execute a prepared request and return the result in a ResultSet object
-     * @param sql The statment
+     *
+     * @param sql        The statment
      * @param parameters Parameters to bind
      * @return ResultSet
      * @throws SQLException If there are trouble during the request
@@ -91,7 +95,8 @@ public class Database {
 
     /**
      * Create and execute a prepared request to insert data and return the new id
-     * @param sql The statment
+     *
+     * @param sql        The statment
      * @param parameters Parameters to bind
      * @return The id of the entry
      * @throws SQLException If there are trouble during the request
@@ -116,8 +121,8 @@ public class Database {
     }
 
     /**
-     * Just a stupid request method
-     * Idk if I will use it
+     * Just a request method
+     *
      * @param sql The statment
      * @return ResultSet
      * @throws SQLException If there are trouble during the request
