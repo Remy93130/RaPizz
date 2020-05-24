@@ -7,13 +7,14 @@ ORDER BY nomPizza, nomIngredient;
 
 
 # Fiche de livraison
-SELECT idCommande, nomLivreur, nomTypeVehicule, nomClient, dateCommande, TIMEDIFF(dateLivraison, dateCommande) AS retard, nomPizza, prix
-FROM livreur l, vehicule v, TypeVehicule tv, client clt, commande cmd, pizza p
+SELECT idCommande, nomLivreur, nomTypeVehicule, plaqueImmat, nomClient, dateCommande, TIMEDIFF(dateLivraison, dateCommande) AS retard, nomPizza, (prix * ratioPrix) as prix
+FROM livreur l, vehicule v, TypeVehicule tv, client clt, commande cmd, pizza p, taille t
 WHERE cmd.idLivreur = l.idLivreur
   AND cmd.idVehicule = v.idVehicule
   AND v.idTypeVehicule = tv.idTypeVehicule
   AND cmd.idClient = clt.idClient
-  AND cmd.idPizza = p.idPizza;
+  AND cmd.idPizza = p.idPizza
+  AND cmd.idTaille = t.idTaille
 
 
 # Vehicules non utilises

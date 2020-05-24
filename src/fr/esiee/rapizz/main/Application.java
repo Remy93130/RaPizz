@@ -19,7 +19,8 @@ public class Application {
             // Application.vehicule();
             // Application.ingredient();
             // Application.pizza();
-            Application.commande();
+            // Application.commande();
+            Application.special();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -197,5 +198,18 @@ public class Application {
         daoCommande.delete(res);
         System.out.println("After delete:");
         daoCommande.get().forEach(System.out::println);
+    }
+
+    private static void special() throws SQLException {
+        DaoSpecial daoSpecial = new DaoSpecial();
+        System.out.println("Delivery ticket:");
+        daoSpecial.getDeliveryTicket().forEach(System.out::println);
+        System.out.println("Unused vehicules:");
+        daoSpecial.getUnusedVehicule().forEach(System.out::println);
+        System.out.println("Command by client:");
+        daoSpecial.getCommandCountByClient().forEach((k, v) -> System.out.println(String.format("%s:%d", k, v)));
+        System.out.println("Average command by client:\n" + daoSpecial.AverageCommandCount());
+        System.out.println("Most loyal clients");
+        daoSpecial.mostLoyalClients().forEach(System.out::println);
     }
 }
