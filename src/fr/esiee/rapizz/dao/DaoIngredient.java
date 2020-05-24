@@ -14,7 +14,7 @@ public class DaoIngredient extends AbstactDao implements DaoIngredientInterface 
     public int add(Ingredient ingredient) throws SQLException {
         ArrayList<String> params = new ArrayList<>();
         params.add(ingredient.getName());
-        String sql = "INSERT INTO ingredient (nomIngredient) VALUES (?)";
+        String sql = "INSERT INTO Ingredient (nomIngredient) VALUES (?)";
         int id = this.db.preparedRequestInsert(sql, params);
         for (Pizza pizza : ingredient.getPizzas()) {
             ArrayList<String> paramsPizza = new ArrayList<>();

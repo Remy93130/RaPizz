@@ -14,7 +14,8 @@ public class Application {
             // Application.typeVehicule();
             // Application.taille();
             // Application.vehicule();
-            Application.ingredient();
+            // Application.ingredient();
+            Application.pizza();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -142,5 +143,27 @@ public class Application {
         daoIngredient.delete(res);
         System.out.println("After delete");
         daoIngredient.get().forEach(System.out::println);
+        System.out.println("getPizzas():");
+        daoIngredient.get(1).getPizzas().forEach(System.out::println);
+    }
+
+    private static void pizza() throws SQLException {
+        DaoPizza daoPizza = new DaoPizza();
+        System.out.println("Pizza:");
+        daoPizza.get().forEach(System.out::println);
+        int res = daoPizza.add(new Pizza(
+                "Special du chef",
+                12.0f
+        ));
+        Pizza pizza = daoPizza.get(res);
+        System.out.println("After add:\n" + pizza);
+        pizza.setName("Pizza updated");
+        daoPizza.update(pizza);
+        System.out.println("After update:\n" + daoPizza.get(res));
+        daoPizza.delete(res);
+        System.out.println("After delete");
+        daoPizza.get().forEach(System.out::println);
+        System.out.println("getIngredients():");
+        daoPizza.get(2).getIngredients().forEach(System.out::println);
     }
 }
