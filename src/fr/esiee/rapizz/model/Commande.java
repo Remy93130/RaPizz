@@ -16,7 +16,7 @@ public class Commande {
     public Commande(int id, Date dateCommand, Date dateDelivery, Client client, Pizza pizza, Taille taille, Livreur livreur, Vehicule vehicule) {
         this.id = id;
         this.dateCommand = Objects.requireNonNull(dateCommand);
-        this.dateDelivery = Objects.requireNonNull(dateDelivery);
+        this.dateDelivery = dateDelivery;
         this.client = Objects.requireNonNull(client);
         this.pizza = Objects.requireNonNull(pizza);
         this.taille = Objects.requireNonNull(taille);

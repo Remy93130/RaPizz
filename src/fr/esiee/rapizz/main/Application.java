@@ -4,6 +4,9 @@ import fr.esiee.rapizz.dao.*;
 import fr.esiee.rapizz.model.*;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,7 +18,8 @@ public class Application {
             // Application.taille();
             // Application.vehicule();
             // Application.ingredient();
-            Application.pizza();
+            // Application.pizza();
+            Application.commande();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -165,5 +169,33 @@ public class Application {
         daoPizza.get().forEach(System.out::println);
         System.out.println("getIngredients():");
         daoPizza.get(2).getIngredients().forEach(System.out::println);
+    }
+
+    private static void commande() throws SQLException {
+        DaoCommande daoCommande = new DaoCommande();
+        DaoClient daoClient = new DaoClient();
+        DaoPizza daoPizza = new DaoPizza();
+        DaoTaille daoTaille = new DaoTaille();
+        DaoLivreur daoLivreur = new DaoLivreur();
+        DaoVehicule daoVehicule = new DaoVehicule();
+        System.out.println("Commande:");
+        daoCommande.get().forEach(System.out::println);
+        int res = daoCommande.add(new Commande(
+                new Date(System.currentTimeMillis() - (900 * 1000)),
+                null,
+                daoClient.get(1),
+                daoPizza.get(1),
+                daoTaille.get(1),
+                daoLivreur.get(1),
+                daoVehicule.get(1)
+        ));
+        Commande commande = daoCommande.get(res);
+        System.out.println("After add:\n" + commande);
+        commande.setDateDelivery(new Date());
+        daoCommande.update(commande);
+        System.out.println("After update:\n" + commande);
+        daoCommande.delete(res);
+        System.out.println("After delete:");
+        daoCommande.get().forEach(System.out::println);
     }
 }
