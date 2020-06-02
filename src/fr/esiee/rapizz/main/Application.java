@@ -19,8 +19,8 @@ public class Application {
             Application.pizza();
             Application.commande();*/
             Application.special();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            displaySQLException(e);
         }
     }
 
@@ -214,5 +214,12 @@ public class Application {
             System.out.println(k);
             v.forEach(ingredient -> System.out.println("\t" + ingredient));
         });
+    }
+
+    public static void displaySQLException(SQLException e) {
+        System.err.print(e.getSQLState());
+        System.err.print(" " + e.getMessage());
+        System.err.println(" (" + e.getErrorCode() + ")");
+        e.printStackTrace();
     }
 }

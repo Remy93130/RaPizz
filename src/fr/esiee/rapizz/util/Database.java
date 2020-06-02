@@ -1,5 +1,6 @@
 package fr.esiee.rapizz.util;
 
+import fr.esiee.rapizz.main.Application;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -25,8 +26,11 @@ public class Database {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.con = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException e) {
+            System.err.println("Driver introuvable");
             e.printStackTrace();
+        } catch (SQLException e) {
+            Application.displaySQLException(e);
         }
     }
 
