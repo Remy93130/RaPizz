@@ -130,4 +130,17 @@ public class Database {
     public ResultSet request(String sql) throws SQLException {
         return con.createStatement().executeQuery(sql);
     }
+
+    /**
+     * Method called before the destruction of object.
+     * Close the Connection object.
+     * @throws Throwable
+     */
+    @Override
+    protected void finalize() throws Throwable {
+        if (!this.con.isClosed()) {
+            this.con.close();
+        }
+        super.finalize();
+    }
 }
