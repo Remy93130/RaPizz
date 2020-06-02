@@ -209,5 +209,10 @@ public class Application {
         System.out.println("Average command by client:\n" + daoSpecial.AverageCommandCount());
         System.out.println("Most loyal clients");
         daoSpecial.mostLoyalClients().forEach(System.out::println);
+        System.out.println("Menu:");
+        daoSpecial.getMenu().forEach((k, v) -> {
+            System.out.println(k);
+            v.forEach(ingredient -> System.out.println("\t" + ingredient));
+        });
     }
 }

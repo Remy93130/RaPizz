@@ -120,6 +120,11 @@ public class Database {
         return statement.executeUpdate() > 0;
     }
 
+    public ResultSet callProcedure(String name) throws SQLException {
+        CallableStatement statement = con.prepareCall(name);
+        return statement.executeQuery();
+    }
+
     /**
      * Just a request method
      *

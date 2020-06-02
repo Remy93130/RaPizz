@@ -8,7 +8,7 @@ public class DeliveryTicket {
     private final String livreur;
     private final String vehicule;
     private final String clientName;
-    private final Date retard;
+    private final Long retard;
     private final String pizzaName;
     private final float price;
 
@@ -17,9 +17,13 @@ public class DeliveryTicket {
         this.livreur = Objects.requireNonNull(livreur);
         this.vehicule = Objects.requireNonNull(vehicule);
         this.clientName = Objects.requireNonNull(clientName);
-        this.retard = retard;
+        this.retard = (retard != null)? retard.getTime() / 1000 : null;
         this.pizzaName = Objects.requireNonNull(pizzaName);
-        this.price = price;
+        if (this.retard != null && this.retard >= 30 * 60) {
+            this.price = 0;
+        } else {
+            this.price = price;
+        }
     }
 
     public int getId() {
@@ -38,7 +42,7 @@ public class DeliveryTicket {
         return clientName;
     }
 
-    public Date getRetard() {
+    public Long getRetard() {
         return retard;
     }
 

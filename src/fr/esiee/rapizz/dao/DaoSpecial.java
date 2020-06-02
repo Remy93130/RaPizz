@@ -23,18 +23,24 @@ public class DaoSpecial extends AbstactDao {
         super();
     }
 
+    public Map<String, List<String>> getMenu() throws SQLException {
+        ResultSet rs = this.db.callProcedure("CALL P_Menu()");
+        HashMap<String, List<String>> menu = new HashMap<>();
+        while (rs.next()) {
+            String pizzaName = String.format("%s (%s€)", rs.getString(1), rs.getString(2));
+            menu.putIfAbsent(pizzaName, new ArrayList<>());
+            menu.get(pizzaName).add(rs.getString(3));
+        }
+        return menu;
+    }
+
     public List<DeliveryTicket> getDeliveryTicket() throws SQLException {
         ArrayList<DeliveryTicket> deliveryTickets = new ArrayList<>();
-        String sql = "SELECT idCommande, nomLivreur, nomTypeVehicule, plaqueImmat, nomClient, dateCommande, " +
-                "TIMEDIFF(dateLivraison, dateCommande) AS retard, nomPizza, (prix * ratioPrix) as prix " +
-                "FROM livreur l, vehicule v, TypeVehicule tv, client clt, commande cmd, pizza p, taille t " +
-                "WHERE cmd.idLivreur = l.idLivreur AND cmd.idVehicule = v.idVehicule " +
-                "AND v.idTypeVehicule = tv.idTypeVehicule AND cmd.idClient = clt.idClient " +
-                "AND cmd.idPizza = p.idPizza AND cmd.idTaille = t.idTaille";
+        String sql = "SELECT * FROM V_TicketLivraison ORDER BY dateCommande DESC";
         ResultSet resultSet = this.db.request(sql);
         while (resultSet.next()) {
             deliveryTickets.add(new DeliveryTicket(
-                    resultSet.getInt("idCommande"),
+                    resultSet.getInt("id"),
                     resultSet.getString("nomLivreur"),
                     resultSet.getString("plaqueImmat"),
                     resultSet.getString("nomClient"),
