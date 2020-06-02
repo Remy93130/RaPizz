@@ -10,6 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoClient extends AbstactDao implements DaoClientInterface {
+    private static DaoClient instance = null;
+
+    public static DaoClient getInstance() {
+        if (instance == null) {
+            instance = new DaoClient();
+        }
+        return instance;
+    }
+
+    private DaoClient() {
+        super();
+    }
 
     @Override
     public int add(Client client) throws SQLException {

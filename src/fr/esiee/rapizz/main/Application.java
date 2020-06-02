@@ -9,7 +9,7 @@ import java.util.Date;
 public class Application {
     public static void main(String[] args) {
         try {
-            Application.adresse();
+            /*Application.adresse();
             Application.client();
             Application.livreur();
             Application.typeVehicule();
@@ -17,7 +17,7 @@ public class Application {
             Application.vehicule();
             Application.ingredient();
             Application.pizza();
-            Application.commande();
+            Application.commande();*/
             Application.special();
         } catch (Exception e) {
             e.printStackTrace();
@@ -25,7 +25,7 @@ public class Application {
     }
 
     private static void adresse() throws SQLException {
-        DaoAdresse daoAdresse = new DaoAdresse();
+        DaoAdresse daoAdresse = DaoAdresse.getInstance();
         System.out.println("Adresse:");
         daoAdresse.get().forEach(System.out::println);
         int res = daoAdresse.add(new Adresse(
@@ -47,8 +47,8 @@ public class Application {
     }
 
     private static void client() throws SQLException {
-        DaoClient daoClient = new DaoClient();
-        DaoAdresse daoAdresse = new DaoAdresse();
+        DaoClient daoClient = DaoClient.getInstance();
+        DaoAdresse daoAdresse = DaoAdresse.getInstance();
         System.out.println("Client:");
         daoClient.get().forEach(System.out::println);
         int res = daoClient.add(new Client(
@@ -70,7 +70,7 @@ public class Application {
     }
 
     private static void livreur() throws SQLException {
-        DaoLivreur daoLivreur = new DaoLivreur();
+        DaoLivreur daoLivreur = DaoLivreur.getInstance();
         System.out.println("Livreur:");
         daoLivreur.get().forEach(System.out::println);
         int res = daoLivreur.add(new Livreur("John"));
@@ -85,7 +85,7 @@ public class Application {
     }
 
     private static void typeVehicule() throws SQLException {
-        DaoTypeVehicule daoTypeVehicule = new DaoTypeVehicule();
+        DaoTypeVehicule daoTypeVehicule = DaoTypeVehicule.getInstance();
         System.out.println("TypeVehicule:");
         daoTypeVehicule.get().forEach(System.out::println);
         int res = daoTypeVehicule.add(new TypeVehicule("Scooter des mers"));
@@ -100,7 +100,7 @@ public class Application {
     }
 
     private static void taille() throws SQLException {
-        DaoTaille daoTaille = new DaoTaille();
+        DaoTaille daoTaille = DaoTaille.getInstance();
         System.out.println("Taille:");
         daoTaille.get().forEach(System.out::println);
         int res = daoTaille.add(new Taille("Senior", 2.0f));
@@ -115,8 +115,8 @@ public class Application {
     }
 
     private static void vehicule() throws SQLException {
-        DaoVehicule daoVehicule = new DaoVehicule();
-        DaoTypeVehicule daoTypeVehicule = new DaoTypeVehicule();
+        DaoVehicule daoVehicule = DaoVehicule.getInstance();
+        DaoTypeVehicule daoTypeVehicule = DaoTypeVehicule.getInstance();
         System.out.println("Vehicule:");
         daoVehicule.get().forEach(System.out::println);
         int res = daoVehicule.add(new Vehicule(
@@ -134,7 +134,7 @@ public class Application {
     }
 
     private static void ingredient() throws SQLException {
-        DaoIngredient daoIngredient = new DaoIngredient();
+        DaoIngredient daoIngredient = DaoIngredient.getInstance();
         System.out.println("Ingredient:");
         daoIngredient.get().forEach(System.out::println);
         int res = daoIngredient.add(new Ingredient("Ingredient"));
@@ -151,7 +151,7 @@ public class Application {
     }
 
     private static void pizza() throws SQLException {
-        DaoPizza daoPizza = new DaoPizza();
+        DaoPizza daoPizza = DaoPizza.getInstance();
         System.out.println("Pizza:");
         daoPizza.get().forEach(System.out::println);
         int res = daoPizza.add(new Pizza(
@@ -171,12 +171,12 @@ public class Application {
     }
 
     private static void commande() throws SQLException {
-        DaoCommande daoCommande = new DaoCommande();
-        DaoClient daoClient = new DaoClient();
-        DaoPizza daoPizza = new DaoPizza();
-        DaoTaille daoTaille = new DaoTaille();
-        DaoLivreur daoLivreur = new DaoLivreur();
-        DaoVehicule daoVehicule = new DaoVehicule();
+        DaoCommande daoCommande = DaoCommande.getInstance();
+        DaoClient daoClient = DaoClient.getInstance();
+        DaoPizza daoPizza = DaoPizza.getInstance();
+        DaoTaille daoTaille = DaoTaille.getInstance();
+        DaoLivreur daoLivreur = DaoLivreur.getInstance();
+        DaoVehicule daoVehicule = DaoVehicule.getInstance();
         System.out.println("Commande:");
         daoCommande.get().forEach(System.out::println);
         int res = daoCommande.add(new Commande(
@@ -199,7 +199,7 @@ public class Application {
     }
 
     private static void special() throws SQLException {
-        DaoSpecial daoSpecial = new DaoSpecial();
+        DaoSpecial daoSpecial = DaoSpecial.getInstance();
         System.out.println("Delivery ticket:");
         daoSpecial.getDeliveryTicket().forEach(System.out::println);
         System.out.println("Unused vehicules:");

@@ -10,6 +10,19 @@ import java.util.List;
 import java.util.Map;
 
 public class DaoSpecial extends AbstactDao {
+    private static DaoSpecial instance = null;
+
+    public static DaoSpecial getInstance() {
+        if (instance == null) {
+            instance = new DaoSpecial();
+        }
+        return instance;
+    }
+
+    private DaoSpecial() {
+        super();
+    }
+
     public List<DeliveryTicket> getDeliveryTicket() throws SQLException {
         ArrayList<DeliveryTicket> deliveryTickets = new ArrayList<>();
         String sql = "SELECT idCommande, nomLivreur, nomTypeVehicule, plaqueImmat, nomClient, dateCommande, " +

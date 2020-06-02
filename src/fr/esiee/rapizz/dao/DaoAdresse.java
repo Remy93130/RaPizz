@@ -9,6 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoAdresse extends AbstactDao implements DaoAdresseInterface {
+    private static DaoAdresse instance = null;
+
+    public static DaoAdresse getInstance() {
+        if (instance == null) {
+            instance = new DaoAdresse();
+        }
+        return instance;
+    }
+
+    private DaoAdresse() {
+        super();
+    }
+
     @Override
     public int add(Adresse adresse) throws SQLException {
         ArrayList<String> params = new ArrayList<>();

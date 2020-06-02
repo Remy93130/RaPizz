@@ -10,6 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoIngredient extends AbstactDao implements DaoIngredientInterface {
+    private static DaoIngredient instance = null;
+
+    public static DaoIngredient getInstance() {
+        if (instance == null) {
+            instance = new DaoIngredient();
+        }
+        return instance;
+    }
+
+    private DaoIngredient() {
+        super();
+    }
+
     @Override
     public int add(Ingredient ingredient) throws SQLException {
         ArrayList<String> params = new ArrayList<>();

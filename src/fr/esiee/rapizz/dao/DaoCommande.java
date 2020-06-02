@@ -12,6 +12,19 @@ import java.util.Date;
 import java.util.List;
 
 public class DaoCommande extends AbstactDao implements DaoCommandeInterface {
+    private static DaoCommande instance = null;
+
+    public static DaoCommande getInstance() {
+        if (instance == null) {
+            instance = new DaoCommande();
+        }
+        return instance;
+    }
+
+    private DaoCommande() {
+        super();
+    }
+
     @Override
     public int add(Commande commande) throws SQLException {
         ArrayList<String> params = new ArrayList<>();

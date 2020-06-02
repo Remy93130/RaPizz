@@ -10,6 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoPizza extends AbstactDao implements DaoPizzaInterface {
+    private static DaoPizza instance = null;
+
+    public static DaoPizza getInstance() {
+        if (instance == null) {
+            instance = new DaoPizza();
+        }
+        return instance;
+    }
+
+    private DaoPizza() {
+        super();
+    }
+
     @Override
     public int add(Pizza pizza) throws SQLException {
         ArrayList<String> params = new ArrayList<>();

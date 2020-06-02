@@ -9,6 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoTaille extends AbstactDao implements DaoTailleInterface {
+    private static DaoTaille instance = null;
+
+    public static DaoTaille getInstance() {
+        if (instance == null) {
+            instance = new DaoTaille();
+        }
+        return instance;
+    }
+
+    private DaoTaille() {
+        super();
+    }
+
     @Override
     public int add(Taille taille) throws SQLException {
         ArrayList<String> params = new ArrayList<>();

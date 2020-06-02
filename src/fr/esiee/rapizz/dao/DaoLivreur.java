@@ -9,6 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoLivreur extends AbstactDao implements DaoLivreurInterface {
+    private static DaoLivreur instance = null;
+
+    public static DaoLivreur getInstance() {
+        if (instance == null) {
+            instance = new DaoLivreur();
+        }
+        return instance;
+    }
+
+    private DaoLivreur() {
+        super();
+    }
+
     @Override
     public int add(Livreur livreur) throws SQLException {
         ArrayList<String> params = new ArrayList<>();

@@ -10,6 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DaoVehicule extends AbstactDao implements DaoVehiculeInterface {
+    private static DaoVehicule instance = null;
+
+    public static DaoVehicule getInstance() {
+        if (instance == null) {
+            instance = new DaoVehicule();
+        }
+        return instance;
+    }
+
+    private DaoVehicule() {
+        super();
+    }
+
     @Override
     public int add(Vehicule vehicule) throws SQLException {
         ArrayList<String> params = new ArrayList<>();
